@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Screening</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+
+            min-height: 100vh;
+
+            background-image:
+                linear-gradient(
+                    rgba(8, 30, 70, 0.75),
+                    rgba(8, 30, 70, 0.75)
+                ),
+                url("/static/images/resume_background.png");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 650px;
+            padding: 40px;
+
+            border-radius: 15px;
+
+            background-image:
+                linear-gradient(
+                    rgba(255, 255, 255, 0.75),
+                    rgba(255, 255, 255, 0.75)
+                ),
+                url("/static/images/resume_background.png");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .dashboard {
+            display: flex;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card {
+            flex: 1;
+
+            background: #f3f4ff;
+
+            padding: 20px;
+
+            border-radius: 10px;
+        }
+
+        .number {
+            font-size: 30px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .upload-box {
+            border: 2px dashed #667eea;
+
+            padding: 35px;
+
+            border-radius: 10px;
+
+            background: #fafaff;
+        }
+
+        .upload-box h3 {
+            color: #333;
+        }
+
+        .upload-box p {
+            color: #666;
+        }
+
+        /* Match Percentage */
+
+        .percentage-label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #333;
+
+            font-weight: bold;
+        }
+
+        .percentage-input {
+            width: 180px;
+
+            padding: 10px;
+
+            border: 1px solid #aaa;
+
+            border-radius: 6px;
+
+            font-size: 15px;
+
+            text-align: center;
+
+            margin-bottom: 15px;
+        }
+
+        .percentage-input:focus {
+            outline: none;
+
+            border-color: #667eea;
+
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.4);
+        }
+
+        input[type="file"] {
+            margin: 20px;
+        }
+
+        button {
+            padding: 12px 30px;
+
+            background: #667eea;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #5568d8;
+        }
+
+        .links {
+            margin-top: 25px;
+        }
+
+        .links a {
+            margin: 8px;
+
+            text-decoration: none;
+
+            color: #667eea;
+
+            font-weight: bold;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Resume Screening</h1>
+
+
+    <!-- Dashboard -->
+
+    <div class="dashboard">
+
+        <div class="card">
+
+            <div class="number">
+                {{ total_uploads }}
+            </div>
+
+            <div>
+                Total Resume Uploads
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="number">
+                {{ unique_candidates }}
+            </div>
+
+            <div>
+                Unique Candidates
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Upload Form -->
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+
+        <div class="upload-box">
+
+            <h3>Upload Resume</h3>
+
+            <p>PDF or DOCX only</p>
+
+
+            <!-- Manual Match Percentage -->
+
+            <label
+                for="match_percentage"
+                class="percentage-label"
+            >
+                Enter Match Percentage:
+            </label>
+
+
+            <input
+                type="number"
+                name="match_percentage"
+                id="match_percentage"
+                class="percentage-input"
+                min="0"
+                max="100"
+                step="1"
+                placeholder="0 - 100"
+                required
+            >
+
+            <span>%</span>
+
+
+            <br>
+
+
+            <!-- Resume File -->
+
+            <input
+                type="file"
+                name="resume"
+                accept=".pdf,.docx"
+                required
+            >
+
+
+            <br>
+
+
+            <button type="submit">
+                Upload Resume
+            </button>
+
+        </div>
+
+    </form>
+
+
+    <!-- Links -->
+
+    <div class="links">
+
+        <a href="/skills">
+            Required Skills
+        </a>
+
+        <a href="/candidates">
+            Candidates
+        </a>
+
+        <a href="/download_word">
+            Download Word Report
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

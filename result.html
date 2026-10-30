@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Resume Result</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial;
+
+            background: #f2f4f8;
+
+            padding: 30px;
+
+        }
+
+
+        .container {
+
+            width: 700px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.1);
+
+        }
+
+
+        h2 {
+
+            color: #333;
+
+        }
+
+
+        h3 {
+
+            color: #667eea;
+
+            margin-top: 25px;
+
+        }
+
+
+        .box {
+
+            background: #f5f5f5;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+        }
+
+
+        .matched {
+
+            color: green;
+
+        }
+
+
+        .missing {
+
+            color: red;
+
+        }
+
+
+        .percentage {
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            color: #667eea;
+
+        }
+
+
+        .links {
+
+            margin-top: 25px;
+
+        }
+
+
+        .links a {
+
+            margin-right: 15px;
+
+            color: #667eea;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <h2>
+        Resume Screening
+    </h2>
+
+
+    <div class="box">
+
+        <strong>Resume:</strong>
+
+        {{ filename }}
+
+    </div>
+
+
+    <h3>
+        Candidate Details
+    </h3>
+
+
+    <p>
+        <strong>Name:</strong>
+        {{ candidate_name }}
+    </p>
+
+
+    <p>
+        <strong>Email:</strong>
+        {{ email }}
+    </p>
+
+
+    <p>
+        <strong>Phone:</strong>
+        {{ phone }}
+    </p>
+
+
+    <p>
+        <strong>Education:</strong>
+        {{ education }}
+    </p>
+
+
+    <h3>
+        Required Skills
+    </h3>
+
+
+    <ul>
+
+        {% for skill in required_skills %}
+
+            <li>
+                {{ skill }}
+            </li>
+
+        {% endfor %}
+
+    </ul>
+
+
+    <h3>
+        Matched Skills
+    </h3>
+
+
+    {% if matched_skills %}
+
+
+        <ul>
+
+            {% for skill in matched_skills %}
+
+                <li class="matched">
+
+                    {{ skill }}
+
+                </li>
+
+            {% endfor %}
+
+        </ul>
+
+
+    {% else %}
+
+
+        <p>
+            No matched skills.
+        </p>
+
+
+    {% endif %}
+
+
+    <h3>
+        Missing Skills
+    </h3>
+
+
+    {% if missing_skills %}
+
+
+        <ul>
+
+            {% for skill in missing_skills %}
+
+                <li class="missing">
+
+                    {{ skill }}
+
+                </li>
+
+            {% endfor %}
+
+        </ul>
+
+
+    {% else %}
+
+
+        <p>
+            No missing skills.
+        </p>
+
+
+    {% endif %}
+
+
+    <h3>
+        Match Percentage
+    </h3>
+
+
+    <p class="percentage">
+
+        {{ match_percentage }}%
+
+    </p>
+
+
+    <div class="links">
+
+
+        <a href="/">
+            Home
+        </a>
+
+
+        <a href="/skills">
+            Required Skills
+        </a>
+
+
+        <a href="/candidates">
+            Candidates
+        </a>
+
+
+        <a href="/download_word">
+            Download Word Report
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

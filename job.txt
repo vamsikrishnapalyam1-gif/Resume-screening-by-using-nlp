@@ -1,0 +1,11 @@
+We are hiring a Python Developer.
+
+Required Skills
+
+Python
+Flask
+HTML
+CSS
+JavaScript
+SQL
+Machine Learning

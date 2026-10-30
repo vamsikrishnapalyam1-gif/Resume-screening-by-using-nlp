@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Required Skills</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial;
+
+            background: linear-gradient(
+                135deg,
+                #667eea,
+                #764ba2
+            );
+
+            margin: 0;
+
+            padding: 40px;
+
+        }
+
+
+        .container {
+
+            width: 600px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.2);
+
+        }
+
+
+        h2 {
+
+            text-align: center;
+
+        }
+
+
+        form {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        input {
+
+            flex: 1;
+
+            padding: 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 6px;
+
+        }
+
+
+        button {
+
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: #667eea;
+
+            color: white;
+
+            cursor: pointer;
+
+        }
+
+
+        ul {
+
+            list-style: none;
+
+            padding: 0;
+
+        }
+
+
+        li {
+
+            background: #f2f2f2;
+
+            margin: 8px 0;
+
+            padding: 12px;
+
+            border-radius: 6px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+        }
+
+
+        .delete {
+
+            background: #dc3545;
+
+            color: white;
+
+            padding: 6px 10px;
+
+            text-decoration: none;
+
+            border-radius: 5px;
+
+        }
+
+
+        .links {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+        }
+
+
+        .links a {
+
+            margin: 8px;
+
+            text-decoration: none;
+
+            color: #667eea;
+
+            font-weight: bold;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <h2>
+        Required Skills
+    </h2>
+
+
+    <!-- IMPORTANT -->
+
+    <form
+        action="/skills"
+        method="POST"
+    >
+
+
+        <input
+            type="text"
+            name="skill"
+            placeholder="Enter required skill"
+            required
+        >
+
+
+        <button type="submit">
+            Add Skill
+        </button>
+
+
+    </form>
+
+
+    {% if required_skills %}
+
+
+        <ul>
+
+
+            {% for skill in required_skills %}
+
+
+                <li>
+
+
+                    <span>
+                        {{ skill[1] }}
+                    </span>
+
+
+                    <a
+                        class="delete"
+                        href="/delete_skill/{{ skill[0] }}"
+                    >
+                        Delete
+                    </a>
+
+
+                </li>
+
+
+            {% endfor %}
+
+
+        </ul>
+
+
+        <div style="text-align:center;">
+
+
+            <a href="/delete_all_skills">
+
+
+                <button type="button">
+
+                    Delete All Skills
+
+                </button>
+
+
+            </a>
+
+
+        </div>
+
+
+    {% else %}
+
+
+        <p style="text-align:center;">
+
+            No required skills added yet.
+
+        </p>
+
+
+    {% endif %}
+
+
+    <div class="links">
+
+
+        <a href="/">
+            Home
+        </a>
+
+
+        <a href="/candidates">
+            Candidates
+        </a>
+
+
+        <a href="/logout">
+            Logout
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
